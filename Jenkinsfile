@@ -11,8 +11,7 @@ pipeline {
                     sh 'python3 -m venv venv'
                     // Activate the virtual environment and install dependencies
                     sh '''
-                        source venv/bin/activate
-                        pip install -r requirements.txt
+                        . venv/bin/activate
                     '''
                 }
             }
@@ -23,8 +22,9 @@ pipeline {
                 script {
                     // Activate the virtual environment and run tests
                     sh '''
-                        source venv/bin/activate
-                        python -m unittest discover -s tests -p "test_main.py"
+                        . venv/bin/activate
+                        pip install pytest
+                        pytest test_baitap1.py -v
                     '''
                 }
             }
